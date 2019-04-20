@@ -28,23 +28,4 @@ public class SVGChartsPage extends PageBase implements SVGChartsLocators {
     public WebElement getHighChartGraphTitle() {
         return highChartGraphTitle;
     }
-
-    @FindBy(xpath = PIE_CHART_GRAPH_TITLE)
-    private WebElement pieChartGraphTitle;
-
-    public WebElement getPieChartGraphTitle() {
-        return pieChartGraphTitle;
-    }
-
-    @FindBy(xpath = ACCEPT_COOKIE_BTN)
-    private WebElement acceptCookieBtn;
-
-    public WebElement getAcceptCookieBtn() {
-        return acceptCookieBtn;
-    }
-
-    public void acceptCookies() {
-        base.waitForElementToBeClickable(10, getAcceptCookieBtn());
-        getAcceptCookieBtn().click();
-    }
 }

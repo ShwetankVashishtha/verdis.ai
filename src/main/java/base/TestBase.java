@@ -27,12 +27,14 @@ public class TestBase extends WebDriverTestBase {
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             openURL(URL);
+            pause(7500);
         } else if (browserName.equalsIgnoreCase("firefox")) {
             System.setProperty("webdriver.gecko.driver",
                     propertyManager.getResourceBundle.getProperty("GECKO_DRIVER_PATH"));
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
             openURL(URL);
+            pause(7500);
         }
     }
 

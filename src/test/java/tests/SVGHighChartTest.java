@@ -28,7 +28,6 @@ public class SVGHighChartTest {
     @BeforeClass
     public void openBrowser() {
         base.openBrowser(propertyManager.getResourceBundle.getProperty("BROWSER"), propertyManager.getResourceBundle.getProperty("HIGH_CHARTS_AUT"));
-        base.pause(7500);
     }
 
     @AfterClass
