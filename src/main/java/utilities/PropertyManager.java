@@ -20,5 +20,4 @@ public class PropertyManager {
             e.printStackTrace();
         }
     }
-
 }
