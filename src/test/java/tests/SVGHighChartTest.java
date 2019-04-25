@@ -17,12 +17,12 @@ public class SVGHighChartTest {
 
     @BeforeSuite
     public void connectDatabase() {
-        mongoDBConnection.connectDatabase(propertyManager.getResourceBundle.getProperty("mongodb.server.url"), 27017);
+        mongoDBConnection.openConnection(propertyManager.getResourceBundle.getProperty("mongodb.server.url"));
     }
 
     @AfterSuite
     public void closeDatabase() {
-        mongoDBConnection.closeDatabase();
+        mongoDBConnection.closeConnection();
     }
 
     @BeforeClass
@@ -39,9 +39,8 @@ public class SVGHighChartTest {
     public void verifyHighChartText() {
         svgChartsPage = new SVGChartsPage(base.getDriver());
 
-        mongoDBConnection.getDB(propertyManager.getResourceBundle.getProperty("mongodb.db.name"));
-        mongoDBConnection.getCollection(propertyManager.getResourceBundle.getProperty("mongodb.collection.name"));
-        Assert.assertEquals(svgChartsPage.getHighChartText().getText(), "Number of Employees");
+        Object object = mongoDBConnection.showContentInCollection().get("item");
+        Assert.assertTrue(!svgChartsPage.getHighChartText().getText().equals(object));
     }
 
     @Test(description = "Verify High-Chart Graph Title")

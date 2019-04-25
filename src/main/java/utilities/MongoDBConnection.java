@@ -1,28 +1,36 @@
 package utilities;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 
 public class MongoDBConnection {
 
     MongoClient mongoClient;
-    MongoDatabase mongoDatabase;
-    MongoCollection mongoCollection;
+    PropertyManager propertyManager = new PropertyManager();
 
-    public void connectDatabase(String dbUrl, int dbPort) {
-        mongoClient = new MongoClient(dbUrl, dbPort);
+    public void openConnection(String dbUrl) {
+        mongoClient = new MongoClient(dbUrl, 27017);
     }
 
-    public void getDB(String dbName) {
-        mongoDatabase = mongoClient.getDatabase(dbName);
+    public MongoDatabase getDB() {
+        return mongoClient.getDatabase(propertyManager.getResourceBundle.getProperty("mongo.db.name"));
     }
 
-    public void getCollection(String collectionName) {
-        mongoCollection = mongoDatabase.getCollection(collectionName);
+    public MongoCollection<Document> getCollection() {
+        return getDB().getCollection(propertyManager.getResourceBundle.getProperty("mongo.db.collection.name"));
     }
 
-    public void closeDatabase() {
+    public void closeConnection() {
         mongoClient.close();
+    }
+
+    public Document showContentInCollection() {
+        FindIterable<Document> findIterable = getCollection().find();
+        if (findIterable.iterator().hasNext())
+            System.out.println(findIterable.iterator().next());
+        return findIterable.iterator().next();
     }
 }
