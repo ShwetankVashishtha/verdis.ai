@@ -1,7 +1,9 @@
 package tests;
 
 import base.TestBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.SVGChartsPage;
@@ -61,5 +63,11 @@ public class SVGHighChartTest {
         JavascriptExecutor jse = (JavascriptExecutor) base.getDriver();
         Object object = jse.executeScript("return document.getElementsByTagName('path')[0].getAttribute('d')");
         Assert.assertEquals((String) object, "M 77.5 62 L 77.5 364");
+    }
+
+    @Test(description = "Capture bar line values: MAnufacturing Employees Growth")
+    public void readDataFromBarLineManufacturingEmployeesGrowth() {
+        svgChartsPage = new SVGChartsPage(base.getDriver());
+        Assert.assertTrue(svgChartsPage.getBarLineTextManufacturing().getText().contains("Manufacturing"));
     }
 }
