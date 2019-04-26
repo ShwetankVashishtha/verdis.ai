@@ -1,7 +1,7 @@
 # cogneau-auto
 
 High-Charts automation<br>
-MongoDB Connection via JDBC
+Database Validation Testing
 
 # Project Jenkins DSL
   
