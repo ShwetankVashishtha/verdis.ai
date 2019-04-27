@@ -3,6 +3,7 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+//NOSONAR
 public abstract class WebDriverTestBase {
 
     protected static WebDriver driver;

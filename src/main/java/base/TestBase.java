@@ -11,6 +11,7 @@ import utilities.PropertyManager;
 
 import java.util.concurrent.TimeUnit;
 
+//NOSONAR
 public class TestBase extends WebDriverTestBase {
 
     PropertyManager propertyManager = new PropertyManager();
