@@ -35,6 +35,12 @@ public class SVGHighChartTest {
         base.closeBrowser();
     }
 
+    @Test(description = "Capture bar line values: Manufacturing Employees Growth")
+    public void readDataFromBarLineManufacturingEmployeesGrowth() {
+        svgChartsPage = new SVGChartsPage(base.getDriver());
+        Assert.assertTrue(svgChartsPage.getBarLineTextManufacturing().getText().contains(propertyManager.getResourceBundle.getProperty("BAR_LINE_TEXT_MANUFACTURING")));
+    }
+
     @Test(description = "Verify High-Chart X-Axis Text")
     public void verifyHighChartText() {
         svgChartsPage = new SVGChartsPage(base.getDriver());
@@ -61,11 +67,5 @@ public class SVGHighChartTest {
         JavascriptExecutor jse = (JavascriptExecutor) base.getDriver();
         Object object = jse.executeScript("return document.getElementsByTagName('path')[0].getAttribute('d')");
         Assert.assertEquals((String) object, propertyManager.getResourceBundle.getProperty("DOM_ATTRIBUTE_COORDINATES"));
-    }
-
-    @Test(description = "Capture bar line values: MAnufacturing Employees Growth")
-    public void readDataFromBarLineManufacturingEmployeesGrowth() {
-        svgChartsPage = new SVGChartsPage(base.getDriver());
-        Assert.assertTrue(svgChartsPage.getBarLineTextManufacturing().getText().contains(propertyManager.getResourceBundle.getProperty("BAR_LINE_TEXT_MANUFACTURING")));
     }
 }
