@@ -1,9 +1,7 @@
 package tests;
 
 import base.TestBase;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.SVGChartsPage;
@@ -19,7 +17,7 @@ public class SVGHighChartTest {
 
     @BeforeSuite
     public void connectDatabase() {
-        mongoDBConnection.openConnection(propertyManager.getResourceBundle.getProperty("mongodb.server.url"));
+        mongoDBConnection.openConnection(propertyManager.getResourceBundle.getProperty("MONGO.SERVER.URL"));
     }
 
     @AfterSuite
@@ -41,33 +39,33 @@ public class SVGHighChartTest {
     public void verifyHighChartText() {
         svgChartsPage = new SVGChartsPage(base.getDriver());
 
-        Object object = mongoDBConnection.showContentInCollection().get("item");
+        Object object = mongoDBConnection.showContentInCollection().get(propertyManager.getResourceBundle.getProperty("KEY_ITEMS"));
         Assert.assertTrue(!svgChartsPage.getHighChartText().getText().equals(object));
     }
 
     @Test(description = "Verify High-Chart Graph Title")
     public void verifyHighChartGraphTitle() {
         svgChartsPage = new SVGChartsPage(base.getDriver());
-        Assert.assertEquals(svgChartsPage.getHighChartGraphTitle().getText(), "SOLAR EMPLOYMENT GROWTH BY SECTOR, 2010-2016");
+        Assert.assertEquals(svgChartsPage.getHighChartGraphTitle().getText(), propertyManager.getResourceBundle.getProperty("HIGH_CHART_GRAPH_TITLE"));
     }
 
     @Test(description = "Read attributes from High-Chart")
     public void readAttributeFromHighChart() {
         JavascriptExecutor jse = (JavascriptExecutor) base.getDriver();
         Object object = jse.executeScript("return document.getElementsByTagName('svg')[0].getAttribute('class')");
-        Assert.assertEquals((String) object, "highcharts-root");
+        Assert.assertEquals((String) object, propertyManager.getResourceBundle.getProperty("DOM_ATTRIBUTE_CLASS"));
     }
 
     @Test(description = "Read data from High-Chart")
     public void readDataFromHighChart() {
         JavascriptExecutor jse = (JavascriptExecutor) base.getDriver();
         Object object = jse.executeScript("return document.getElementsByTagName('path')[0].getAttribute('d')");
-        Assert.assertEquals((String) object, "M 77.5 62 L 77.5 364");
+        Assert.assertEquals((String) object, propertyManager.getResourceBundle.getProperty("DOM_ATTRIBUTE_COORDINATES"));
     }
 
     @Test(description = "Capture bar line values: MAnufacturing Employees Growth")
     public void readDataFromBarLineManufacturingEmployeesGrowth() {
         svgChartsPage = new SVGChartsPage(base.getDriver());
-        Assert.assertTrue(svgChartsPage.getBarLineTextManufacturing().getText().contains("Manufacturing"));
+        Assert.assertTrue(svgChartsPage.getBarLineTextManufacturing().getText().contains(propertyManager.getResourceBundle.getProperty("BAR_LINE_TEXT_MANUFACTURING")));
     }
 }

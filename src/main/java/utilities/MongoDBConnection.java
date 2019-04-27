@@ -16,11 +16,11 @@ public class MongoDBConnection {
     }
 
     public MongoDatabase getDB() {
-        return mongoClient.getDatabase(propertyManager.getResourceBundle.getProperty("mongo.db.name"));
+        return mongoClient.getDatabase(propertyManager.getResourceBundle.getProperty("MONGO.DB.NAME"));
     }
 
     public MongoCollection<Document> getCollection() {
-        return getDB().getCollection(propertyManager.getResourceBundle.getProperty("mongo.db.collection.name"));
+        return getDB().getCollection(propertyManager.getResourceBundle.getProperty("MONGO.DB.COLLECTION.NAME"));
     }
 
     public void closeConnection() {
