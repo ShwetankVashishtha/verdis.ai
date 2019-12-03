@@ -37,4 +37,11 @@ public class SVGChartsPage extends PageBase implements SVGChartsLocators {
     public WebElement getBarLineTextManufacturing() {
         return barLineTextManufacturing;
     }
+
+    @FindBy(xpath = TOOL_TIP_INSTALLATION)
+    private WebElement toolTipInstallation;
+
+    public WebElement getToolTipInstallation() {
+        return toolTipInstallation;
+    }
 }
