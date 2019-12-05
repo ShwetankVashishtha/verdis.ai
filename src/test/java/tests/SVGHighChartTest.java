@@ -70,36 +70,4 @@ public class SVGHighChartTest {
         Object object = jse.executeScript("return document.getElementsByTagName('path')[0].getAttribute('d')");
         Assert.assertEquals((String) object, propertyManager.getResourceBundle.getProperty("DOM_ATTRIBUTE_COORDINATES"));
     }
-
-    @Test(description = "Get tool tip data")
-    public void getToolTipText() {
-//        JavascriptExecutor jse = (JavascriptExecutor) base.getDriver();
-//        base.implicitWait(10);
-//        base.pause(3000);
-//        String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false);"
-//                + " arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
-//        ((JavascriptExecutor) base.getDriver()).executeScript(mouseOverScript,
-//                base.getDriver().findElement(By.xpath("//*[local-name()='svg']/*[name()='g' and contains(@class, 'highcharts-markers highcharts-series-0 highcharts-line-series highcharts-color-0 highcharts-tracker')]")));
-//        base.pause(3000);
-//        Object object = jse.executeScript("return document.getElementsByClassName('highcharts-point highcharts-color-0 highcharts-point-hover')[1]");
-//        System.out.println((String) object);
-//
-//
-//        svgChartsPage = new SVGChartsPage(base.getDriver());
-////        System.out.println(svgChartsPage.getToolTipInstallation().getText());
-//
-//        JavascriptExecutor jse1 = (JavascriptExecutor) base.getDriver();
-//        jse.executeScript("arguments[0].click();", base.getDriver().findElement(By.xpath("//*[local-name()='svg']/*[name()='g' and contains(@class, 'highcharts-markers highcharts-series-0 highcharts-line-series highcharts-color-0 highcharts-tracker')]")));
-//        Object object1 = jse.executeScript("return document.getElementsByClassName('highcharts-label highcharts-tooltip                                                                                                                                                                                                                                                                                               highcharts-color-0')[0].getAttribute('class');");
-//        System.out.println(object);
-//        System.out.println((String) object);
-base.pause(2000);
-            String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false);"
-                    + " arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
-            ((JavascriptExecutor) base.getDriver()).executeScript(mouseOverScript,
-                    base.getDriver().findElement(By.cssSelector("g.highcharts-label highcharts-tooltip                                    highcharts-color-0 text tspan")));
-
-        String tooltipText = base.getDriver().findElement(By.cssSelector("g.highcharts-label highcharts-tooltip                                    highcharts-color-0 text tspan")).getAttribute("textContent");
-        System.out.println(tooltipText);
-    }
 }
